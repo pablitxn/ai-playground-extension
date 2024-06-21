@@ -1,0 +1,6 @@
+{
+  "apps/backend/**/*.ts": "npm run lint --workspace=@computress/backend",
+  "apps/extension/**/*.ts": "npm run lint --workspace=@computress/extension",
+  "apps/workers/**/*.ts": "npm run lint --workspace=@computress/workers",
+  // "packages/ui/**/*.ts": "npm run lint --workspace=@computress/ui"
+}
