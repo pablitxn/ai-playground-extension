@@ -7,26 +7,26 @@ interface TranslateProps {
   translation: string
   translate: (text: string) => void
   languages: string[]
-  selectLanguage: (language: string) => void
-  languageSelected: {
+  selectLanguage: ({ from, to }: { from: string; to: string }) => void
+  selectedLanguage: {
     from: string
     to: string
   }
 }
 
 const Translate: FC<TranslateProps> = ({
-  translation,
   languages,
+  selectedLanguage,
   selectLanguage,
-  translate,
-  languageSelected
+  translation,
+  translate
 }) => (
   <div className="p-4 bg-gradient-to-br from-bgGradientFrom to-bgGradientTo text-white min-h-screen">
     <div className="max-w-md mx-auto bg-gradient-to-br from-bgGradientCardFrom to-bgGradientCardTo p-8 border border-borderColor rounded-lg">
       <SelectLanguage
         languages={languages}
         selectLanguage={selectLanguage}
-        languageSelected={languageSelected}
+        selectedLanguage={selectedLanguage}
       />
       <Output translation={translation} />
       <Form onSubmit={translate} />

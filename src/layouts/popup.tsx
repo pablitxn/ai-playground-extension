@@ -1,44 +1,29 @@
-import React, { FC, useState } from "react"
+import React, { FC } from "react"
 import Translate from "../components/translate"
-import { translate } from "../state/slices/translate"
+import { translate, selectLanguage } from "../state/slices/translate"
+import { useAppDispatch, useAppSelector } from "../state/hooks"
 import {
-  useAppDispatch,
-  useAppSelector
-} from "../state/hooks"
-import { selectTranslations } from "../state/selectors/translate"
+  selectTranslations,
+  selectSelectedLanguage,
+  languagesSelector
+} from "../state/selectors/translate"
 
 const Popup: FC = () => {
-  const _lng = [
-    "en",
-    "es",
-    "fr",
-    "de",
-    "it",
-    "ja",
-    "ko",
-    "pt",
-    "ru",
-    "zh"
-  ]
-  const [languageSelected, setLanguageSelected] = useState({
-    from: _lng[0],
-    to: _lng[1]
-  })
+  const translations = useAppSelector(selectTranslations)
+  const selectedLanguage = useAppSelector(selectSelectedLanguage)
+  const languages = useAppSelector(languagesSelector)
 
   const dispatch = useAppDispatch()
-  const translations = useAppSelector(selectTranslations)
-
-  const handleTranslate = (payload: any) =>
-    dispatch(translate(payload))
+  const handleTranslate = (payload: any) => dispatch(translate(payload))
 
   const handleSelectLanguage = (payload: any) =>
-    setLanguageSelected(payload)
+    dispatch(selectLanguage(payload))
 
   return (
     <div className="w-96">
       <Translate
-        languages={_lng}
-        languageSelected={languageSelected}
+        languages={languages}
+        selectedLanguage={selectedLanguage}
         selectLanguage={handleSelectLanguage}
         translation={translations[0]}
         translate={handleTranslate}

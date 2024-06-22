@@ -15,8 +15,9 @@ const Form: FC<FormProps> = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <textarea
-        className="w-full h-32 p-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600"
+        className="w-full h-16 p-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600"
         onChange={handleChange}
+        rows={2}
         placeholder="Enter text to translate..."
       />
       <button

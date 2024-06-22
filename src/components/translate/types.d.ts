@@ -1,7 +1,7 @@
 interface SelectLanguageProps {
   languages: string[]
-  selectLanguage: (language: string) => void
-  languageSelected: {
+  selectLanguage: ({ from, to }: { from: string; to: string }) => void
+  selectedLanguage: {
     from: string
     to: string
   }

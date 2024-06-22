@@ -1,9 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { Languages } from "../../constants/translate"
 
 const initialState = {
   translations: [],
   translationId: null,
   incomingTranslation: null,
+  languages: Object.keys(Languages),
+  selectedLanguage: {
+    from: Languages.en,
+    to: Languages.es
+  },
   loading: {
     translate: false
   },
@@ -45,6 +51,9 @@ const translateSlice = createSlice({
     translateFailure: (state) => {
       state.loading.translate = false
       state.error.translate = true
+    },
+    selectLanguage: (state, action) => {
+      state.selectedLanguage = action.payload
     }
   }
 })
@@ -55,7 +64,8 @@ export const {
   translate,
   translateStart,
   translateSuccess,
-  translateFailure
+  translateFailure,
+  selectLanguage
 } = translateSlice.actions
 
 export default translateReducer
