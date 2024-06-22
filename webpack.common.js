@@ -1,6 +1,8 @@
 const CopyPlugin = require("copy-webpack-plugin")
 const HtmlPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const tailwindcss = require("tailwindcss")
+const autoprefixer = require("autoprefixer")
 const path = require("path")
 // const Dotenv = require("dotenv-webpack")
 const WebpackShellPlugin = require("webpack-shell-plugin-next")
@@ -16,7 +18,19 @@ module.exports = {
       { use: "ts-loader", test: /\.tsx?$/, exclude: /node_modules/ },
       {
         test: /\.css$/i,
-        use: ["style-loader", { loader: "css-loader", options: { importLoaders: 1 } }]
+        use: [
+          "style-loader",
+          { loader: "css-loader", options: { importLoaders: 1 } },
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                ident: "postcss",
+                plugins: [tailwindcss, autoprefixer]
+              }
+            }
+          }
+        ]
       },
       {
         type: "assets/resource",
@@ -30,7 +44,7 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve("src/static"), to: path.resolve("dist") }
+        { from: path.resolve("src/static"), to: path.resolve("dist") },
         // { from: path.resolve("src/assets/icons"), to: path.resolve("dist") }
       ]
     }),
@@ -62,7 +76,7 @@ function getHtmlPlugins(chunks) {
   return chunks.map(
     (chunk) =>
       new HtmlPlugin({
-        title: "Computress",
+        title: "Translation using local LLM",
         filename: `${chunk}.html`,
         chunks: [chunk]
       })

@@ -1,13 +1,12 @@
 import React, { FC } from "react"
-// import { useAuth } from "../hooks/useAuth"
-import "./styles.css"
+import Translate from "../components/translate"
 
 const Popup: FC = () => {
-  // const { isLogged, getAuth } = useAuth()
-  // const { profileAnalysis } = useProfile()
-  // if (!isLogged) return <SignIn onSignIn={getAuth} />
-
-  return <div>Hello world!</div>
+  return (
+    <div className="w-96">
+      <Translate />
+    </div>
+  )
 }
 
 export default Popup
