@@ -1,0 +1,32 @@
+name: CI `extension`
+
+on:
+  push:
+    branches: [main, dev]
+    paths:
+      - "src/**"
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main, dev]
+    paths:
+      - "src/**"
+
+jobs:
+  build-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+#      - name: Tests
+#        run: turbo run test
+      - name: Build
+        env:
+          NODE_ENV: production
+        run: npm run build

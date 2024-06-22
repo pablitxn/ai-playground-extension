@@ -10,7 +10,7 @@ async function updateManifesJSON() {
   const env = process.env.NODE_ENV
 
   const extensionName =
-    env === "production" ? "Computress" : `Computress (${env})`
+    env === "production" ? "Translation with Local LLM" : `Translation with Local LLM (${env})`
 
   const varsToReplace = {
     name: `${extensionName}`,

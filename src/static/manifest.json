@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Computress",
-  "description": "Agent",
+  "name": "Translation with Local LLM",
+  "description": "Translate using with Local LLM",
   "version": "0.0.1",
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Computress",
+    "default_title": "Translate with Local LLM",
     "default_icon": "favicon.png"
   },
   "permissions": ["tabs", "activeTab", "storage", "cookies"],

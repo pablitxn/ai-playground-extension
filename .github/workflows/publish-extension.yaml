@@ -1,0 +1,98 @@
+name: Publish `extension` in Chrome Web Store
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.find_branch.outputs.branch }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Fetch all branch references
+        run: git fetch --all
+      - name: Get the remote branch name that contains the tag
+        id: find_branch
+        run: |
+          BRANCH_NAME=$(git branch -r --contains ${{ github.ref_name }} | grep -E 'origin/' | sed -E 's/^\s*origin\///' | head -n 1)
+          echo "Remote branch name: $BRANCH_NAME"
+          echo "::set-output name=branch::$BRANCH_NAME"
+
+  build-and-push-prod:
+    needs: [setup]
+    if: needs.setup.outputs.branch == 'main'
+    name: "Build and push to Chrome Web Store - Production"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: "npm"
+      - name: Install jq
+        run: |
+          sudo apt update
+          sudo apt install -y jq
+      - name: "Update version on manifest.json"
+        run: |
+          bash ./scripts/upgrade-extension-version.sh ${{ github.ref_name }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Build extension
+        env:
+          NODE_ENV: production
+        run: npm run build
+      - name: Zip package
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r dist/package.zip /dist
+      - name: Upload & release
+        uses: mnao305/chrome-extension-upload@v4.0.1
+        with:
+          file-path: dist/package.zip
+          extension-id: ${{ vars.EXTENSION_ID_PROD }}
+          client-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          refresh-token: ${{ secrets.REFRESH_TOKEN }}
+          publish-target: trustedTesters
+
+  build-and-push-dev:
+    needs: [setup]
+    if: needs.setup.outputs.branch == 'dev'
+    name: "Build and push to Chrome Web Store - Development"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: "npm"
+      - name: Install jq
+        run: |
+          sudo apt update
+          sudo apt install -y jq
+      - name: "Update version on manifest.json"
+        run: |
+          bash ./scripts/upgrade-extension-version.sh ${{ github.ref_name }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Build extension
+        env:
+          NODE_ENV: development
+        run: npm run build
+      - name: Zip package
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r dist/package.zip dist
+      - name: Upload & release
+        uses: mnao305/chrome-extension-upload@v4.0.1
+        with:
+          file-path: dist/package.zip
+          extension-id: ${{ vars.EXTENSION_ID_DEV }}
+          client-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          refresh-token: ${{ secrets.REFRESH_TOKEN }}
+          publish-target: trustedTesters

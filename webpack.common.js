@@ -2,7 +2,7 @@ const CopyPlugin = require("copy-webpack-plugin")
 const HtmlPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const path = require("path")
-const Dotenv = require("dotenv-webpack")
+// const Dotenv = require("dotenv-webpack")
 const WebpackShellPlugin = require("webpack-shell-plugin-next")
 
 module.exports = {
@@ -34,9 +34,9 @@ module.exports = {
         // { from: path.resolve("src/assets/icons"), to: path.resolve("dist") }
       ]
     }),
-    new Dotenv({
-      systemvars: true
-    }),
+    // new Dotenv({
+    //   systemvars: true
+    // }),
     new WebpackShellPlugin({
       onBuildEnd: {
         scripts: ["npm run update:manifest"],
