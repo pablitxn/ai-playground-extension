@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { getIdTokenFromCookie } from "../utils/chrome"
-import { getAuth } from "../services/auth"
+// import { getAuth } from "../services/auth"
 
 export const useAuth = () => {
   const [idToken, setIdToken] = useState("")
@@ -17,5 +17,5 @@ export const useAuth = () => {
     })()
   }, [])
 
-  return { isLogged: !!idToken, getAuth }
+  return { isLogged: !!idToken, getAuth: "getAuth" }
 }

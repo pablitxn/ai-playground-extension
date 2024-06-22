@@ -1,3 +1,2 @@
-// export const selectConversationId = state => state.chat.conversationId;
-const asd = {}
-export default asd
+export const selectTranslations = (state: any) =>
+  state.translate.translations

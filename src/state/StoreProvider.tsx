@@ -8,7 +8,6 @@ const StoreProvider = ({ children }) => {
   if (!storeRef.current) {
     storeRef.current = store
   }
-
   return <Provider store={storeRef.current}>{children}</Provider>
 }
 

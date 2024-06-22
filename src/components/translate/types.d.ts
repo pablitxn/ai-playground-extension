@@ -1,13 +1,16 @@
 interface SelectLanguageProps {
-  label: string;
-  options: string[];
-  onChange: (language: string) => void;
+  languages: string[]
+  selectLanguage: (language: string) => void
+  languageSelected: {
+    from: string
+    to: string
+  }
 }
 
 interface FormProps {
-  onSubmit: (text: string) => void;
+  onSubmit: (text: string) => void
 }
 
 interface OutputProps {
-  translation: string;
+  translation: string
 }
