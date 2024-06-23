@@ -17,8 +17,8 @@ interface ModelsState {
   models: Model[]
   remoteModels: Model[]
   localModels: Model[]
-  selectedModelId: string | null
-  modelIdToDownload: string | null
+  selectedModel: Model | null
+  modelToDownload: Model | null
   apiKeys: {
     openai: string
     anthropic: string
@@ -44,8 +44,8 @@ const initialState: ModelsState = {
   models: LOCAL_MODELS,
   remoteModels: [],
   localModels: [],
-  selectedModelId: null,
-  modelIdToDownload: null,
+  selectedModel: null,
+  modelToDownload: null,
   apiKeys: {
     openai: "",
     anthropic: "",
@@ -71,12 +71,12 @@ const modelsSlice = createSlice({
   name: "models",
   initialState,
   reducers: {
-    selectModel: (state, action: PayloadAction<string>) => {
-      state.selectedModelId = action.payload
+    selectModel: (state, action: PayloadAction<Model>) => {
+      state.selectedModel = action.payload
     },
 
-    downloadModel: (state, action: PayloadAction<string>) => {
-      state.modelIdToDownload = action.payload
+    downloadModel: (state, action: PayloadAction<Model>) => {
+      state.modelToDownload = action.payload
     },
     downloadModelStart: (state) => {
       state.loading.downloadModel = true

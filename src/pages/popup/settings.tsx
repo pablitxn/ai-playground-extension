@@ -1,25 +1,28 @@
-import React, { FC } from "react"
-import Translate from "../../components/translate"
-// import { translate, selectLanguage } from "../state/slices/translate"
-// import { useAppDispatch, useAppSelector } from "../state/hooks"
-// import {
-//   selectTranslations,
-//   selectSelectedLanguage,
-//   languagesSelector
-// } from "../state/selectors/translate"
+import {FC} from "react"
+import ModelSelect from "@/components/model-select"
+import {useAppDispatch, useAppSelector} from "@/state/hooks"
+import {_models, _selectedModel} from "@/state/selectors/models"
+import {downloadModel, selectModel} from "@/state/slices/models"
+import {Model} from "@/types/globals.d"
 
 const Settings: FC = () => {
-  // const translations = useAppSelector(selectTranslations)
-  // const selectedLanguage = useAppSelector(selectSelectedLanguage)
-  // const languages = useAppSelector(languagesSelector)
-  //
-  // const dispatch = useAppDispatch()
-  // const handleTranslate = (payload: any) => dispatch(translate(payload))
-  //
-  // const handleSelectLanguage = (payload: any) =>
-  //   dispatch(selectLanguage(payload))
+  const dispatch = useAppDispatch()
 
-  return <div className="w-96">settings</div>
+  const models = useAppSelector(_models)
+  const selectedModel = useAppSelector(_selectedModel)
+
+  const handleDownloadModel = (model: Model) => dispatch(downloadModel(model))
+  const handleSelectModel = (model: Model) => dispatch(selectModel(model))
+
+  return (
+    <div className="w-96">
+      <ModelSelect
+        models={models}
+        selectedModel={selectedModel}
+        selectModel={handleSelectModel}
+      />
+    </div>
+  )
 }
 
 export default Settings

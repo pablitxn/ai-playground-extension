@@ -6,7 +6,7 @@ const SelectModel: FC<SelectModelProps> = ({
   selectedModel
 }) => {
   const handleModelSelected = (e: ChangeEvent<HTMLSelectElement>) => {
-    selectModel(e.target.value)
+    selectModel(models.find((model) => model.id === e.target.value))
   }
 
   return (
@@ -15,7 +15,7 @@ const SelectModel: FC<SelectModelProps> = ({
       <div className="mb-4">
         <label className="mb-2 block text-sm">Model Selected</label>
         <select
-          className="bg-gray-700 w-full rounded p-2"
+          className="bg-gray-700 border-gray-700 w-full rounded border p-2"
           onChange={handleModelSelected}
           value={selectedModel?.id || ""}
         >
