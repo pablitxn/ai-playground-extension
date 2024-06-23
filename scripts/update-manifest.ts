@@ -1,7 +1,7 @@
 // import Logger from "pino"
-import { config } from "dotenv"
-import path from "path"
 import fs from "fs"
+import path from "path"
+import {config} from "dotenv"
 
 config()
 
@@ -10,20 +10,26 @@ async function updateManifesJSON() {
   const env = process.env.NODE_ENV
 
   const extensionName =
-    env === "production" ? "Translation with Local LLM" : `Translation with Local LLM (${env})`
+    env === "production"
+      ? "Local GPT Extension"
+      : `Local GPT Extension (${env})`
 
   const varsToReplace = {
     name: `${extensionName}`,
     action: {
       default_title: `${extensionName}`,
-      default_popup: "popup.html",
+      default_popup: "popup.html"
       // default_icon: "favicon.png"
-    },
-    host_permissions: [`${process.env.HOST_PERMISSIONS}`]
+    }
+    // host_permissions: [`${process.env.HOST_PERMISSIONS}`]
   }
 
   const currentManifest = JSON.parse(fs.readFileSync(manifestPath).toString())
-  const newManifest = JSON.stringify({ ...currentManifest, ...varsToReplace }, null, 2)
+  const newManifest = JSON.stringify(
+    {...currentManifest, ...varsToReplace},
+    null,
+    2
+  )
   fs.writeFileSync(manifestPath, newManifest)
 }
 

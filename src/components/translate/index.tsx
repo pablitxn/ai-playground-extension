@@ -1,9 +1,7 @@
-import React, { FC } from "react"
+import {FC} from "react"
 import Form from "./form"
 import Output from "./output"
 import SelectLanguage from "./select-language"
-
-
 
 const Translate: FC<TranslateProps> = ({
   languages,
@@ -12,8 +10,8 @@ const Translate: FC<TranslateProps> = ({
   translation,
   translate
 }) => (
-  <div className="p-4 bg-gradient-to-br from-bgGradientFrom to-bgGradientTo text-white min-h-screen">
-    <div className="max-w-md mx-auto bg-gradient-to-br from-bgGradientCardFrom to-bgGradientCardTo p-8 border border-borderColor rounded-lg">
+  <div className="text-white min-h-screen bg-gradient-to-br from-bgGradientFrom to-bgGradientTo p-4">
+    <div className="mx-auto max-w-md rounded-lg border border-borderColor bg-gradient-to-br from-bgGradientCardFrom to-bgGradientCardTo p-8">
       <SelectLanguage
         languages={languages}
         selectLanguage={selectLanguage}

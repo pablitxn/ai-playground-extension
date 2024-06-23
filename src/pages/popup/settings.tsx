@@ -19,7 +19,7 @@ const Settings: FC = () => {
   // const handleSelectLanguage = (payload: any) =>
   //   dispatch(selectLanguage(payload))
 
-  return <div className="w-96"></div>
+  return <div className="w-96">settings</div>
 }
 
 export default Settings

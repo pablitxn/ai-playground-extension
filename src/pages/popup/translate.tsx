@@ -1,12 +1,12 @@
-import React, { FC } from "react"
+import {FC} from "react"
 import TranslateComponent from "@/components/translate"
-import { translate, selectLanguage } from "@/state/slices/translate"
-import { useAppDispatch, useAppSelector } from "@/state/hooks"
+import {useAppDispatch, useAppSelector} from "@/state/hooks"
 import {
   selectTranslations,
   selectSelectedLanguage,
   languagesSelector
 } from "@/state/selectors/translate"
+import {translate, selectLanguage} from "@/state/slices/translate"
 
 const Translate: FC = () => {
   const translations = useAppSelector(selectTranslations)

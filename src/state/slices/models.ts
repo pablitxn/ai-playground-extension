@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { LlmModel } from "@/types/enums"
-import { LOCAL_MODELS } from "@/state/constants/models"
+import {createSlice, PayloadAction} from "@reduxjs/toolkit"
+import {LOCAL_MODELS} from "@/state/constants/models"
+import {Model} from "@/types/globals.d"
 
 type DiskUsageItem = {
   model: Model

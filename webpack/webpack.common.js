@@ -9,9 +9,9 @@ const WebpackShellPlugin = require("webpack-shell-plugin-next")
 
 module.exports = {
   entry: {
-    popup: path.resolve("../src/translate.tsx"),
-    serviceWorker: path.resolve("../src/service-worker.ts"),
-    contentScript: path.resolve("../src/content-script.ts")
+    popup: path.resolve("src/popup.tsx"),
+    serviceWorker: path.resolve("src/service-worker.ts"),
+    contentScript: path.resolve("src/content-script.ts")
   },
   module: {
     rules: [
@@ -44,7 +44,10 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        {from: path.resolve("../src/static"), to: path.resolve("dist")}
+        {
+          from: path.resolve("src/manifest.json"),
+          to: path.resolve("dist/manifest.json")
+        }
         // { from: path.resolve("../src/assets/icons"), to: path.resolve("dist") }
       ]
     }),
@@ -68,7 +71,7 @@ module.exports = {
   },
   output: {
     filename: "[name].js",
-    path: path.join(__dirname, "dist")
+    path: path.join(__dirname, "../dist")
   },
   optimization: {
     splitChunks: {chunks: "all"}

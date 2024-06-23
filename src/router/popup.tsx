@@ -1,4 +1,5 @@
 import {createBrowserRouter} from "react-router-dom"
+import NavigationPopup from "@/components/navigation/popup"
 import Chat from "@/pages/popup/chat"
 import Home from "@/pages/popup/home"
 import ModelsDetails from "@/pages/popup/models-details"
@@ -7,12 +8,12 @@ import Translate from "@/pages/popup/translate"
 
 const popupRouter = createBrowserRouter([
   {
-    path: "/",
-    Component: Home,
+    path: "/popup.html",
+    Component: NavigationPopup,
     children: [
       {
         index: true,
-        Component: Home
+        Component: Translate
       },
       {
         path: "translate",
@@ -29,7 +30,7 @@ const popupRouter = createBrowserRouter([
         // ErrorBoundary: TranslateBoundary,
         children: [
           {
-            path: "/model-detail/:modelId",
+            path: "model-detail/:modelId",
             // loader: todoLoader,
             Component: ModelsDetails
           }

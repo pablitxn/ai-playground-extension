@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { Languages, Role, Type, SubType } from "@/types/enums"
+import {createSlice, PayloadAction} from "@reduxjs/toolkit"
+import {Languages, Role, Type, SubType} from "@/types/enums"
+import {Message} from "@/types/globals.d"
 
 interface TranslateState {
   translations: Message[]

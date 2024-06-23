@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require("tailwindcss/colors")
+// eslint-disable-next-line import/no-unresolved
+import colors from "tailwindcss/colors"
 
 module.exports = {
   content: ["./src/**/*.{ts,tsx}"],

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory where the manifest.json is located
-manifest_path="./src/static/manifest.json"
+manifest_path="./src/manifest.json"
 
 # Get the current version from the manifest.json file
 current_version=$(jq -r '.version' "$manifest_path")
