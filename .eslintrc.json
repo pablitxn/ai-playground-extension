@@ -1,0 +1,33 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["@", "./src"]],
+        "extensions": [".ts", ".tsx", ".json"]
+      }
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "arrow-body-style": "error",
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc"
+        },
+        "newlines-between": "never"
+      }
+    ],
+    "react/jsx-curly-brace-presence": ["error", "never"],
+    "react/jsx-boolean-value": ["error", "never"],
+    "react/react-in-jsx-scope": "off"
+  },
+  "ignorePatterns": ["node_modules", "webpack"]
+}

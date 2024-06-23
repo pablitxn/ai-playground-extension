@@ -21,3 +21,10 @@ export enum Type {
 export enum SubType {
   MESSAGE = "message"
 }
+
+export enum LlmModel {
+  Llama = "Llama-3-8B-Instruct",
+  Hermes = "Hermes-2-Pro-Llama-3-8B",
+  Qwen = "Qwen2-7B-Instruct",
+  Mixtral = "Mixtral-8x7B-Instruct-v0.1"
+}

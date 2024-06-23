@@ -1,3 +1,5 @@
+import { ReactNode } from "react"
+
 type Content = {
   id: string
   type: Type
@@ -34,6 +36,40 @@ type SelectedLanguage = {
   to: Languages
 }
 
+type ModelSourceType = "local" | "api"
+
+interface Model {
+  id: string
+  name: string
+  description: string
+  releaseDate: Date
+  quantization: string
+  url?: string
+  size: string
+  diskSize: string
+  sourceType: ModelSourceType
+  apiEndpoint?: string
+  localPath?: string
+  createdAt: Date
+  updatedAt: Date
+  tags?: string[]
+  metadata?: Record<string, any>
+}
+
+////////////////////////////////////////////////////////
+// Interfaces
+// for global components
+////////////////////////////////////////////////////////
+
+interface ProvidersProps {
+  children: ReactNode
+}
+
+////////////////////////////////////////////////////////
+// Enums
+// this is a copy of the enums.ts file
+////////////////////////////////////////////////////////
+
 enum Languages {
   en = "English",
   es = "Spanish",
@@ -52,4 +88,12 @@ enum Role {
 enum Type {
   TEXT = "text",
   ACTIVITY = "activity"
+}
+
+enum LlmModel {
+  Llama = "Llama-3-8B-Instruct",
+  Hermes = "Hermes-2-Pro-Llama-3-8B",
+  Qwen = "Qwen2-7B-Instruct",
+  Mixtral = "Mixtral-8x7B-Instruct-v0.1",
+  Phi3Mini = "Phi-3-mini-128k-instruct"
 }

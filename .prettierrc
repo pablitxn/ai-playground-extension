@@ -1,7 +1,7 @@
 {
   "arrowParens": "always",
   "bracketSameLine": false,
-  "bracketSpacing": true,
+  "bracketSpacing": false,
   "semi": false,
   "singleQuote": false,
   "jsxSingleQuote": false,
@@ -15,5 +15,6 @@
   "tabWidth": 2,
   "useTabs": false,
   "embeddedLanguageFormatting": "auto",
-  "endOfLine": "lf"
+  "endOfLine": "lf",
+  "plugins": ["prettier-plugin-packagejson", "prettier-plugin-tailwindcss"]
 }
