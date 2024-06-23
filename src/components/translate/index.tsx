@@ -3,16 +3,7 @@ import Form from "./form"
 import Output from "./output"
 import SelectLanguage from "./select-language"
 
-interface TranslateProps {
-  translation: string
-  translate: (text: string) => void
-  languages: string[]
-  selectLanguage: ({ from, to }: { from: string; to: string }) => void
-  selectedLanguage: {
-    from: string
-    to: string
-  }
-}
+
 
 const Translate: FC<TranslateProps> = ({
   languages,

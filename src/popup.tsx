@@ -1,12 +1,12 @@
-import React from "react"
+import React, { FC, ReactNode } from "react"
 import { createRoot } from "react-dom/client"
 import Popup from "./layouts/popup"
 import StoreProvider from "./state/StoreProvider"
 import "./assets/tailwind.css"
 
-function Providers({ children }) {
-  return <StoreProvider>{children}</StoreProvider>
-}
+const Providers: FC<{ children: ReactNode }> = ({ children }) => (
+  <StoreProvider>{children}</StoreProvider>
+)
 
 function init() {
   const appContainer = document.createElement("div")

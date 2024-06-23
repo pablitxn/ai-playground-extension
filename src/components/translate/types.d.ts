@@ -1,10 +1,7 @@
 interface SelectLanguageProps {
-  languages: string[]
-  selectLanguage: ({ from, to }: { from: string; to: string }) => void
-  selectedLanguage: {
-    from: string
-    to: string
-  }
+  languages: Languages[]
+  selectLanguage: (SelectedLanguage) => void
+  selectedLanguage: SelectedLanguage
 }
 
 interface FormProps {
@@ -12,5 +9,13 @@ interface FormProps {
 }
 
 interface OutputProps {
-  translation: string
+  translation: Message
+}
+
+interface TranslateProps {
+  translation: Message
+  translate: (text: string) => void
+  languages: Languages[]
+  selectLanguage: (payload: SelectedLanguage) => void
+  selectedLanguage: SelectedLanguage
 }

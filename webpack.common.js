@@ -44,7 +44,7 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve("src/static"), to: path.resolve("dist") },
+        { from: path.resolve("src/static"), to: path.resolve("dist") }
         // { from: path.resolve("src/assets/icons"), to: path.resolve("dist") }
       ]
     }),
@@ -61,7 +61,10 @@ module.exports = {
     ...getHtmlPlugins(["popup", "options", "newTab"])
   ],
   resolve: {
-    extensions: [".tsx", ".js", ".ts"]
+    extensions: [".tsx", ".js", ".ts"],
+    alias: {
+      "@": path.resolve(__dirname, "src/")
+    }
   },
   output: {
     filename: "[name].js",

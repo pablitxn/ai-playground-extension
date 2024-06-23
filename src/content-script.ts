@@ -1,6 +1,6 @@
-import { getVariableFromLocalStorage } from "./utils/chrome"
-import { ACTIONS, BACKEND_API_URL } from "./utils/constants"
-import { waitForLastChangeInDom } from "./utils/dom"
+// import { getVariableFromLocalStorage } from "./utils/chrome"
+// import { ACTIONS, BACKEND_API_URL } from "./utils/constants"
+// import { waitForLastChangeInDom } from "./utils/dom"
 
 // Global Variables
 // let example = false

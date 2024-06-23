@@ -15,29 +15,37 @@ import {
   translateStart,
   translateSuccess,
   translateFailure
-} from "../slices/translate"
-import ConversationService from "../../services/conversation"
+} from "@/state/slices/translate"
+import ConversationService from "@/services/conversation"
+import { Role, Type, SubType } from "@/types/enums"
 
 export function* handleAgentMessage() {
   // const conversationId = yield select(selectConversationId)
 }
 
-type algo = any
-
-export function* handleTranslate(
-  action: PayloadAction<algo>
-) {
+export function* handleTranslate(action: PayloadAction<string>) {
+  yield put(translateStart())
   try {
-    const translationId = yield select(
-      (s) => s.translate.translationId
-    )
-    yield put(translateStart())
     const conversationService = new ConversationService()
-    // yield call(conversationService, action.payload)
-    yield put(translateSuccess({}))
-    yield fork(handleAgentMessage)
+    // yield call(conversationService.translate, action.payload)
+    // yield fork(handleAgentMessage)
+    const message = {
+      id: Math.random().toString(36).substring(7), // todo: improve
+      role: Role.ASSISTANT,
+      content: [
+        {
+          id: Math.random().toString(36).substring(7), // todo: improve
+          type: Type.TEXT,
+          subtype: SubType.MESSAGE,
+          payload: {
+            content: "Hola!"
+          }
+        }
+      ]
+    }
+    yield put(translateSuccess(message))
   } catch (e) {
-    yield put(translateFailure(e))
+    yield put(translateFailure())
   }
 }
 

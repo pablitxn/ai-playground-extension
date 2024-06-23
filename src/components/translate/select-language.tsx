@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react"
+import React, { FC, useState, useEffect, ChangeEvent } from "react"
 
 const SelectLanguage: FC<SelectLanguageProps> = ({
   selectLanguage,
@@ -9,6 +9,14 @@ const SelectLanguage: FC<SelectLanguageProps> = ({
     from: selectedLanguage.from,
     to: selectedLanguage.to
   })
+
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setLanguageSelection((prev) => ({
+      ...prev,
+      [name]: value as Languages
+    }))
+  }
 
   useEffect(() => {
     selectLanguage(languageSelection)
@@ -23,9 +31,8 @@ const SelectLanguage: FC<SelectLanguageProps> = ({
         <select
           className="mt-1 block w-full p-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600"
           value={languageSelection.from}
-          onChange={(e) =>
-            setLanguageSelection({ ...languageSelection, from: e.target.value })
-          }
+          name="from"
+          onChange={handleChange}
         >
           {languages.map((option, idx) => (
             <option key={idx} value={option}>
@@ -41,9 +48,8 @@ const SelectLanguage: FC<SelectLanguageProps> = ({
         <select
           className="mt-1 block w-full p-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600"
           value={languageSelection.to}
-          onChange={(e) =>
-            setLanguageSelection({ ...languageSelection, to: e.target.value })
-          }
+          name="to"
+          onChange={handleChange}
         >
           {languages.map((option, idx) => (
             <option key={idx} value={option}>

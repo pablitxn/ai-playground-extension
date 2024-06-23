@@ -6,11 +6,9 @@ export const FAVICON_COLORS = {
   GREEN: "green"
 }
 
-
 export const BACKEND_API_URL = process.env.BACKEND_API_URL
 
 export const COOCKIES = {
   USER: "user",
   SESSION: "oauth_session"
 }
-
