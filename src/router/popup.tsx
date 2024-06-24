@@ -13,7 +13,7 @@ const popupRouter = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Translate
+        Component: Settings
       },
       {
         path: "translate",

@@ -430,15 +430,15 @@ const MixtralModels: Model[] = [
 
 const QwenModels: Model[] = [
   {
-    id: "qwen1_5-0_5b-chat-q0f16",
-    name: "Qwen1.5-0.5B-Chat",
-    quantization: "q0f16",
+    id: "Qwen2-0.5B-Instruct-q4f32_1-MLC",
+    name: "Qwen2-0.5B-Instruct",
+    quantization: "q4f32_1",
     diskSize: "xxx",
-    url: "https://huggingface.co/Qwen/Qwen1.5-0.5B-Chat",
+    url: "https://huggingface.co/mlc-ai/Qwen2-0.5B-Instruct-q4f32_1-MLC",
     description:
       "Qwen1.5 es la versión beta de Qwen2, un modelo de lenguaje solo decodificador basado en la arquitectura Transformer. Preentrenado con una gran cantidad de datos, ofrece mejoras significativas en modelos de chat, soporte multilingüe y manejo estable de 32K de longitud de contexto.",
-    releaseDate: new Date("2023-01-01"), // Fecha ficticia de lanzamiento
-    size: "620M params",
+    releaseDate: new Date("2000-01-01"), // Fecha ficticia de lanzamiento
+    size: "5B params",
     sourceType: "local",
     createdAt: new Date("2023-01-01"),
     updatedAt: new Date(),
@@ -495,9 +495,9 @@ const QwenModels: Model[] = [
 ]
 
 export const LOCAL_MODELS = [
-  ...LlamaModels,
-  ...HermesModels,
-  ...Phi3,
-  ...MixtralModels,
+  // ...LlamaModels,
+  // ...HermesModels,
+  // ...Phi3,
+  // ...MixtralModels,
   ...QwenModels
 ]

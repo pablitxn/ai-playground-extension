@@ -8,7 +8,16 @@
     "default_title": "Translate with Local LLM",
     "default_icon": "favicon.png"
   },
-  "permissions": ["tabs", "activeTab", "storage", "cookies"],
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage",
+    "cookies",
+    "unlimitedStorage"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
   "host_permissions": ["http://localhost:3001/*"],
   "background": {
     "service_worker": "serviceWorker.js"

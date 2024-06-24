@@ -3,7 +3,7 @@
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext", "WebWorker"],
     "allowJs": true,
-    "strict": true,
+    "strict": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "typeRoots": ["./src/types", "./node_modules/@types"],

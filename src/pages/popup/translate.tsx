@@ -1,4 +1,5 @@
-import {FC} from "react"
+// import { env } from "@xenova/transformers"
+import {FC, useEffect} from "react"
 import TranslateComponent from "@/components/translate"
 import {useAppDispatch, useAppSelector} from "@/state/hooks"
 import {
@@ -18,6 +19,19 @@ const Translate: FC = () => {
 
   const handleSelectLanguage = (payload: any) =>
     dispatch(selectLanguage(payload))
+
+  // env.allowLocalModels = false //this is a must and if it's true by default for the first time, wrong data is cached to keep failing after this line is added, until the cache is cleared in browser!
+  // env.backends.onnx.wasm.numThreads = 1
+  // env.backends.onnx.wasm.wasmPaths = "onnxjs/optimized-wasm/onnxruntime-web.wasm";
+  // env.allowRemoteModels = false;
+  // this.embedder = await pipeline("embeddings", EMBEDDING_MODEL_NAME);
+  // env.backend = "onnxjs";
+
+  // useEffect(() => {
+  //   env.backends.onnx.wasm.numThreads = 1
+  //   env.allowLocalModels = true
+  //   console.log(env)
+  // }, [])
 
   return (
     <div className="w-96">

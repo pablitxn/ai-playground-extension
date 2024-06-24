@@ -1,21 +1,35 @@
 const CopyPlugin = require("copy-webpack-plugin")
 const HtmlPlugin = require("html-webpack-plugin")
 const {CleanWebpackPlugin} = require("clean-webpack-plugin")
+const ExtReloader = require("webpack-ext-reloader")
 const tailwindcss = require("tailwindcss")
 const autoprefixer = require("autoprefixer")
 const path = require("path")
-// const Dotenv = require("dotenv-webpack")
+const Dotenv = require("dotenv-webpack")
 const WebpackShellPlugin = require("webpack-shell-plugin-next")
 
 module.exports = {
   entry: {
     popup: path.resolve("src/popup.tsx"),
     serviceWorker: path.resolve("src/service-worker.ts"),
-    contentScript: path.resolve("src/content-script.ts")
+    contentScript: path.resolve("src/content-script.ts"),
   },
   module: {
     rules: [
       {use: "ts-loader", test: /\.tsx?$/, exclude: /node_modules/},
+      {
+        test: /\.ts$/,
+        loader: "ts-loader",
+        options: {
+          configFile: "tsconfig.json",
+          allowTsInNodeModules: false,
+          reportFiles: [
+            "./**/*.{ts,js}",
+            "!./node_modules/**/onnxruntime-web/*"
+          ]
+        }
+      },
+
       {
         test: /\.css$/i,
         use: [
@@ -47,13 +61,17 @@ module.exports = {
         {
           from: path.resolve("src/manifest.json"),
           to: path.resolve("dist/manifest.json")
+        },
+        {
+          from: "node_modules/onnxruntime-web/dist/*.wasm",
+          to: "[name][ext]"
         }
         // { from: path.resolve("../src/assets/icons"), to: path.resolve("dist") }
       ]
     }),
-    // new Dotenv({
-    //   systemvars: true
-    // }),
+    new Dotenv({
+      systemvars: true
+    }),
     new WebpackShellPlugin({
       onBuildEnd: {
         scripts: ["npm run update:manifest"],
@@ -61,7 +79,10 @@ module.exports = {
         parallel: true
       }
     }),
-    ...getHtmlPlugins(["popup", "options", "newTab"])
+    ...getHtmlPlugins(["popup", "options"])
+    // new ExtReloader({
+    //   manifest: path.resolve(__dirname, "../dist/manifest.json")
+    // })
   ],
   resolve: {
     extensions: [".tsx", ".ts"],

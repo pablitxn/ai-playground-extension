@@ -19,6 +19,7 @@ interface ModelsState {
   localModels: Model[]
   selectedModel: Model | null
   modelToDownload: Model | null
+  downloadProgress: number | null
   apiKeys: {
     openai: string
     anthropic: string
@@ -46,6 +47,7 @@ const initialState: ModelsState = {
   localModels: [],
   selectedModel: null,
   modelToDownload: null,
+  downloadProgress: null,
   apiKeys: {
     openai: "",
     anthropic: "",
@@ -75,8 +77,8 @@ const modelsSlice = createSlice({
       state.selectedModel = action.payload
     },
 
-    downloadModel: (state, action: PayloadAction<Model>) => {
-      state.modelToDownload = action.payload
+    downloadModel: (state) => {
+      // state.modelToDownload = action.payload
     },
     downloadModelStart: (state) => {
       state.loading.downloadModel = true

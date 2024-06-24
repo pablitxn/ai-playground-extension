@@ -1,4 +1,4 @@
-import type {RootState} from "@/state"
+import {RootState} from "@/state/store"
 
 export const selectTranslations = (state: RootState) =>
   state.translate.translations

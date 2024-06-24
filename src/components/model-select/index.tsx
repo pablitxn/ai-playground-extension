@@ -3,7 +3,8 @@ import {ChangeEvent, FC} from "react"
 const SelectModel: FC<SelectModelProps> = ({
   models,
   selectModel,
-  selectedModel
+  selectedModel,
+  downloadModel
 }) => {
   const handleModelSelected = (e: ChangeEvent<HTMLSelectElement>) => {
     selectModel(models.find((model) => model.id === e.target.value))
@@ -42,8 +43,8 @@ const SelectModel: FC<SelectModelProps> = ({
               description: {selectedModel.description}
             </div>
           </div>
-          <button className="bg-blue-500 hover:bg-blue-700 mt-4 rounded px-4 py-2">
-            See model details
+          <button onClick={downloadModel} className="bg-blue-500 hover:bg-blue-700 mt-4 rounded px-4 py-2">
+            Download!
           </button>
         </div>
       )}
